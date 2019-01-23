@@ -4,7 +4,8 @@ buildscript {
         springBootVersion = '2.1.2.RELEASE'
     }
     repositories {
-        mavenCentral()
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/'}
+		maven{ url 'http://maven.aliyun.com/nexus/content/repositories/jcenter'}
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
@@ -23,12 +24,13 @@ version = '1.0.0'
 sourceCompatibility = '1.8'
 
 repositories {
-    mavenCentral()
+    maven { url 'http://maven.aliyun.com/nexus/content/groups/public/'}
+    maven{ url 'http://maven.aliyun.com/nexus/content/repositories/jcenter'}
 }
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    //implementation 'com.fasterxml.jackson.module:jackson-module-kotlin'
+    implementation 'com.fasterxml.jackson.module:jackson-module-kotlin'
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.0.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"

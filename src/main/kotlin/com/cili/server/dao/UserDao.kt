@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository
 interface UserDao {
 
     @Select("SELECT * FROM user")
-    fun findAll(): List<User>
+    fun findAll(): List<User>?
 
     @Select("SELECT name FROM USER WHERE name = #{name}")
     fun findName(name: String?): String?

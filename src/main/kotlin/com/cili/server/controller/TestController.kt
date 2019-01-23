@@ -3,10 +3,8 @@ package com.cili.server.controller
 import com.cili.server.dao.UserDao
 import com.cili.server.entiy.BaseJson
 import com.google.gson.Gson
-import org.apache.ibatis.session.SqlSessionException
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
-import java.sql.SQLException
 
 @RestController
 @RequestMapping("test")
@@ -24,11 +22,14 @@ class TestController {
 
     @GetMapping("sel")
     fun findAll(): Any {
-        val userList = userDao.findAll()
-        val gson = Gson()
 
-        val json = gson.toJson(BaseJson(1, "success", userList))
-        return json
+        userDao.findAll()?.let {
+            if (it.isNotEmpty())
+                return gson.toJson(BaseJson(1, "success", it))
+        }
+
+
+        return gson.toJson(BaseJson(-1, "null data"))
     }
 
     @GetMapping("add")
